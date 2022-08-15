@@ -21,6 +21,31 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
+// Create displayForecast function to take care of 5-day forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="forecast row">`; // store data from index.html
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  days.forEach(function (day) {
+    // use loop to display different days
+    forecastHTML =
+      forecastHTML +
+      `
+        <div class="col">
+            <div class="forecast-time">
+              ${day}
+            </div>
+            <i class="fa-solid fa-cloud"></i>
+            <div class="forecast-temperature">
+              <span class="forecast-temperature-max">27&#176</span>
+              <span class="forecast-temperature-min">16&#176</span>
+            </div>
+          </div>
+        `; // data from index.html
+  });
+  forecastHTML = forecastHTML + `</div>`; // close forecastHTML
+  forecastElement.innerHTML = forecastHTML;
+}
 // Create displayTemperature function that pulls data from OpenWeatherMap
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature"); // selecting temperature that alters
@@ -83,5 +108,7 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+displayForecast();
 
 search("Seattle"); // display default city
