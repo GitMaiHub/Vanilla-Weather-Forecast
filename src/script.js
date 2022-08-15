@@ -46,6 +46,13 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`; // close forecastHTML
   forecastElement.innerHTML = forecastHTML;
 }
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "eb2ee96fce77dd8a4eaad97e550c01d8";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+}
 // Create displayTemperature function that pulls data from OpenWeatherMap
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature"); // selecting temperature that alters
@@ -67,6 +74,7 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   ); // pull weather icon from OpenWeatherMap, using icon url and interpolate the data set in "number+d"
   iconElement.setAttribute("alt", response.data.weather[0].description);
+  getForecast(response.data.coord);
 }
 // Create search function to receive a city, invoking AJAX call
 function search(city) {
@@ -111,4 +119,4 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 displayForecast();
 
-search("Seattle"); // display default city
+search("Honolulu"); // display default city
