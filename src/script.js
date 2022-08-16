@@ -21,6 +21,7 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
+// Create formatDay function to receive data for weather forecast
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -34,8 +35,7 @@ function displayForecast(response) {
   let forecastHTML = `<div class="forecast row">`; // store data from index.html
   let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
   forecast.forEach(function (forecastDay, index) {
-    // index returns days in numbers
-    // use loop to display different days
+    // use loop to display different days, index returns days in numbers
     if (index < 6) {
       forecastHTML =
         forecastHTML +
@@ -59,12 +59,11 @@ function displayForecast(response) {
         `; // data from index.html
     } // closing the if argument
   });
-  forecastHTML = forecastHTML + `</div>`; // close forecastHTML
+  forecastHTML = forecastHTML + `</div>`; // closing forecastHTML
   forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "eb2ee96fce77dd8a4eaad97e550c01d8";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
@@ -104,33 +103,8 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-// Take care of temperature conversion from Celsius to Fahrenheit
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active"); // when F degree is shown, C link does not appear active
-  fahrenheitLink.classList.add("active"); // when F degree is shown, F link appears active
-  let fahrenheitTemperature = Math.round(celsiusTemperature * 9) / 5 + 32;
-  let temperatureElement = document.querySelector("#temperature"); // recalling temperatureElement in order to convert celsius to fahrenheit
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active"); // when C degree is shown, C link appears active
-  fahrenheitLink.classList.remove("active"); // when C degree is shown, F link does not appear active
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature); // celsius temperature is the same as temperatureElement
-}
-
-// form, fahrenheitLink, celsiusLink are global variables which are accessible from inside functions above
-let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Honolulu"); // display default city
