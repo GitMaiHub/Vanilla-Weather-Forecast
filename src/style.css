@@ -170,6 +170,25 @@ hr {
   line-height: 0px;
   text-align: center;
 }
+@media (max-width: 768px) {
+  .temperature-container {
+  margin-top: 100px;
+}
+.weather-icon {
+ position: relative;
+  top: -85px;
+  left: 142px;
+}
+.temperature {
+  margin: 30px;
+  padding: 0;
+}
+.units {
+  position: relative;
+    top: -75px;
+    right: -120px;
+}
+}
 @media (max-width: 576px) {
   body {
     background: none;
@@ -192,22 +211,5 @@ hr {
 }
 .weather .btn {
 font-size: 16px;
-}
-.temperature-container {
-  margin-top: 100px;
-}
-.weather-icon {
- position: relative;
-  top: -85px;
-  left: 142px;
-}
-.temperature {
-  margin: 30px;
-  padding: 0;
-}
-.units {
-  position: relative;
-    top: -75px;
-    right: -120px;
 }
 }
