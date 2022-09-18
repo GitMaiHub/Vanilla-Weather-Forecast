@@ -103,11 +103,7 @@ body {
 .temperature-container {
   margin-top: 40px;
 }
-.weather-icon {
-  font-size: 60px;
-  margin: 10px 0;
-  padding-right: 10px;
-}
+
 .temperature {
   color: #fff;
   font-size: 80px;
@@ -187,9 +183,31 @@ hr {
 .container {
   padding: 0;
 }
+.col-9 {
+  padding: 0;
+}
+.col-3 {
+  padding-left: 10px;
+  padding-right: 0;
+}
+.weather .btn {
+font-size: 16px;
+}
+.temperature-container {
+  margin-top: 100px;
+}
 .weather-icon {
-  font-size: 0px;
-  margin: 10px 0;
-  padding-right: 10px;
+ position: relative;
+  top: -85px;
+  left: 142px;
+}
+.temperature {
+  margin: 30px;
+  padding: 0;
+}
+.units {
+  position: relative;
+    top: -75px;
+    right: -120px;
 }
 }
